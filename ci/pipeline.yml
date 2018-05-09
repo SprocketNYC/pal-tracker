@@ -76,13 +76,12 @@ jobs:
       DATABASE_NAME: {{review-database-name}}
       DATABASE_USERNAME: {{review-database-username}}
       DATABASE_PASSWORD: {{review-database-password}}
-  - put: review-deployment
-    params:
       manifest: pal-tracker/manifest-review.yml
       path: pal-tracker-artifacts/pal-tracker-*.jar
       environment_variables:
         WELCOME_MESSAGE: "Hello from the review environment"
         SPRING_DATASOURCE_URL: "jdbc:mysql://10.0.8.18:3306/cf_e70dada4_fb60_4744_a600_f7139e98e975?user=pELrLUHonUnhosAE\u0026password=xDLNv4ucXHyw9lJz"
+  - put: review-deployment
 
 - name: deploy-production
   plan:
@@ -102,10 +101,9 @@ jobs:
       DATABASE_NAME: {{production-database-name}}
       DATABASE_USERNAME: {{production-database-username}}
       DATABASE_PASSWORD: {{production-database-password}}
-  - put: production-deployment
-    params:
       manifest: pal-tracker/manifest-production.yml
       path: pal-tracker-artifacts/pal-tracker-*.jar
       environment_variables:
         WELCOME_MESSAGE: "Hello from the production environment"
         SPRING_DATASOURCE_URL: "jdbc:mysql://10.0.8.18:3306/cf_ae9efd5d_d1ec_4a13_81a0_292eae5a12c6?user=U2yOtjhIkyDTLRoc\u0026password=rmuAldj9gPkh5UjQ"
+  - put: production-deployment
